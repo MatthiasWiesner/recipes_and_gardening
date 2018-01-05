@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 gardening_show_header">
+    <h1><%= @gardening.name %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <% @gardening.pictures.each_with_index do |p, idx| %>
+    <div class="gardening_show_picture">
+      <%= link_to image_tag(picture_path(p.id, size: "small")), url_for({controller: 'pictures', :action => 'show', id: p.id}), local: true, data: {lightbox: "image_group", title: ""} %>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-md-9">
+    <% if @gardening.description.present? %>
+    <div class="gardening_show_description">
+      <%= @gardening.description.html_safe %>
+    </div>
+    <% end %>
+    <div class="gardening_show_content">
+      <h1>Zubereitung</h1>
+      <%= @gardening.content.html_safe %>
+    </div>
+    <div class="gardening_show_related">
+      <h1>Verwandte Links</h1>
+      <%= @related.html_safe %>
+    </div>
+  </div>
+</div>

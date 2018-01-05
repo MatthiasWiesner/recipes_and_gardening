@@ -1,5 +1,9 @@
 {
   "name": "recipes",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "coffeescript": "1.12.7"
+  },
+  "devDependencies": {
+  }
 }

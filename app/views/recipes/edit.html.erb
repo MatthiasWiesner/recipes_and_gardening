@@ -1,0 +1,33 @@
+<div class="row">
+  <h1>Rezept bearbeiten</h1>
+  <div class="col-md-3">
+    <%= form_with(url: pictures_path, action: "create", local: true, html: {:multipart => true}) do |form| %>
+    <div class="form-group">
+      <%= form.hidden_field("recipe_id", :value => @recipe.id) %>
+      <%= form.label "Bild hochladen" %>
+      <%= form.file_field :picture, class: "form-control" %>
+    </div>
+    <div class="actions form-group">
+      <%= form.submit class: "btn btn-default" %>
+    </div>
+    <% end %>
+  <% @recipe.pictures.each do |p| %>
+    <%= link_to '', picture_path(p.id, recipe_id: @recipe.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove" %>
+    <div class="recipe_show_picture">
+      <%= link_to image_tag(picture_path(p.id, size: "small")), url_for({controller: 'pictures', :action => 'show', id: p.id}), local: true, data: {lightbox: "image_group", title: ""} %>
+    </div>
+  <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'form', recipe: @recipe %>
+  </div>
+  <div class="col-md-3">
+    <%= form_with(url: tags_path, action: "create", local: true) do |form| %>
+      <label for="recipe_tags">Tags</label>
+      <div id="recipe_add_tag" class="btn btn-default btn-xs">markierter Text</div>
+      <input name="recipe_tags" id="recipe_tags" type="text" value="<%= @recipe.tags.map{ |t| t.tag }.join(",") %>" class="form-control"></input>
+      <%= form.hidden_field("recipe_id", :value => @recipe.id) %>
+      <%= form.submit class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

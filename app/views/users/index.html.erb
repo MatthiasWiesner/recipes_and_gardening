@@ -1,29 +1,27 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Nutzer</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= link_to '', user_path(user), class: "glyphicon glyphicon-eye-open" %></td>
+            <td><%= link_to '', edit_user_path(user), class: "glyphicon glyphicon-pencil" %></td>
+            <td><%= link_to '', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'Neuer Nutzer', new_user_path, :class => "btn btn-default" %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Bild bearbeiten</h1>
+    <div class="pictures_edit_imagepreview">
+      <%= link_to image_tag(picture_path(@picture.id, size: "small")), 
+        url_for({controller: 'pictures', :action => 'show', id: @picture.id}), 
+        local: true, 
+        data: {lightbox: "image_group", title: ""} %>
+    </div>
+    <div class="pictures_edit_relations">
+      <h1>Wird noch gebraucht in..</h1>
+      <h2>Rezepte</h2>
+      <% @picture.recipes.each do |recipe| %>    
+        <%= link_to(recipe.name, recipe_path(recipe.id), local: true) %>
+      <% end %>
+      <h2>Gartentipps</h2>
+      <% @picture.gardening.each do |gardening| %>    
+        <%= link_to(gardening.name, gardening_path(gardening.id), local: true) %>
+      <% end %>
+    </div>
+    <div class="pictures_edit_actions">
+      <%= link_to 'Bild löschen?', picture_path(@picture.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

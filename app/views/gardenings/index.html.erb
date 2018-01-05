@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Gartentipps</h1>
+    <table class="table">
+      <tbody>
+        <% @gardenings.each do |gardening| %>
+          <% next if not (gardening.published or logged_in?) %>
+          <tr>
+            <td><%= link_to gardening.name, gardening_path(gardening) %></td>
+            <td><%= link_to gardening.description.html_safe, gardening_path(gardening) %></td>
+            <% if logged_in? %>
+            <td><span class="glyphicon glyphicon-eye-<%= gardening.published ? "open" : "close" %>"></span></td>
+            <td><%= link_to '', edit_gardening_path(gardening), class: "glyphicon glyphicon-pencil" %></td>
+            <td><%= link_to '', gardening, method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if logged_in? %>
+    <%= link_to 'Neuer Gartentipp', new_gardening_path, class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

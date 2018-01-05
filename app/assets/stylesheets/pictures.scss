@@ -1,0 +1,31 @@
+.pictures_index_single {
+  width: 100px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.pictures_edit_imagepreview {
+  text-align: center;
+  border-width: 1px;
+  border-style: inset;
+  background-color: lightgray;
+  padding: 5px;
+  width: fit-content;
+  margin: auto;
+}
+
+.pictures_edit_link {
+  vertical-align: top;
+}
+
+.pictures_edit_relations {
+  margin-top: 50px;
+  text-align: center;
+  h1 { font-size: 2em; };
+  h2 { font-size: 1.5em; margin-bottom: 10px; margin-top: 30px; };
+}
+
+.pictures_edit_actions {
+  margin-top: 50px;
+  text-align: center;
+}

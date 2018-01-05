@@ -1,0 +1,52 @@
+// Place all the styles related to the Recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#recipe_ingredients {
+  height: 200px;
+}
+#recipe_preparation {
+  height: 400px;
+}
+
+.recipe_show_header {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.recipe_show_description, .recipe_show_ingredients, .recipe_show_preparation, .recipe_show_related {
+  h1 {
+    font-size: 200%;
+    text-align: left;
+  };
+  a {
+    color: red;
+    
+    &:visited {
+      color:red;
+    }
+  }
+  margin-bottom: 50px;
+}
+
+.recipe_show_picture {
+  border-width: 1px;
+  border-style: inset;
+  background-color: lightgray;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 212px;
+}
+
+.recipe_delete_picture {
+  float: right;
+}
+
+label[for=recipe_tags-selectized] {
+  display: inline-block;
+}
+
+#recipe_add_tag {
+  float: right;
+  cursor: pointer;
+}

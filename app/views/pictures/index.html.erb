@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Pictures</h1>
+    <div class="pictures_index_list">
+    <% @pictures.each do |p| %>
+      <div class="pictures_index_single">
+        <%= link_to image_tag(picture_path(p.id, size: "small")), url_for({controller: 'pictures', :action => 'edit', id: p.id}), :local => true %>
+      </div>
+    <% end %>
+    </div>
+    <!-- <%= link_to 'New Picture', new_picture_path %> -->
+  </div>
+</div>

@@ -25,7 +25,11 @@ class BlogsController < ApplicationController
 
   def newest
     @blog = Blog.order("created_at").last
-    render :show
+    if @blog.present?
+      render :show
+    else
+      render :index
+    end
   end
 
   # GET /blogs/new

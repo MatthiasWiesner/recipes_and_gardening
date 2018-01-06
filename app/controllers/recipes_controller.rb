@@ -16,15 +16,24 @@ class RecipesController < ApplicationController
     redirect_to action: :index if not (@recipe.published or logged_in?)
 
     gardening_links = Hash.new{|h, k| h[k] = []}
-    get_common_recipe_gardenings(@recipe.id).each do |gardening_tag|
+
+    # links for ingredients only
+    GardeningTag.all.each do |gardening_tag|
       gardening = Gardening.find(gardening_tag.gardening_id)
       next if !gardening.published
-      
+
       tag = Tag.find(gardening_tag.tag_id)
       link = "[#{tag.tag}](#{gardening_path(gardening.id)})"
       if @recipe.ingredients.include?(tag.tag)
         @recipe.ingredients = @recipe.ingredients.gsub(tag.tag, link)
+        gardening_links[gardening] << tag
       end
+    end
+
+    # links for common tags
+    get_common_recipe_gardenings(@recipe.id).each do |gardening_tag|
+      gardening = Gardening.find(gardening_tag.gardening_id)
+      tag = Tag.find(gardening_tag.tag_id)
       gardening_links[gardening] << tag
     end
 

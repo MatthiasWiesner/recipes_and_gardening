@@ -8,8 +8,10 @@
         <% @blogs.each do |blog| %>
           <% next if not (blog.published or logged_in?) %>
           <tr>
-            <td><%= link_to blog.name, blog_path(blog) %></td>
-            <td><%= link_to blog.description.html_safe, blog_path(blog) %></td>
+            <td class="index_title_description_td">
+              <div class="index_title_div"><%= link_to blog.name, blog_path(blog) %></div>
+              <div class="index_description_div"><%= link_to blog.description.html_safe, blog_path(blog) %></div>
+            </td>
             <% if logged_in? %>
             <td class="index_action_td"><span class="glyphicon glyphicon-eye-<%= blog.published ? "open" : "close" %>"></span></td>
             <td class="index_action_td"><%= link_to '', edit_blog_path(blog), class: "glyphicon glyphicon-pencil" %></td>

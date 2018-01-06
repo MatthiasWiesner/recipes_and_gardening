@@ -8,8 +8,10 @@
         <% @recipes.each do |recipe| %>
           <% next if not (recipe.published or logged_in?) %>
           <tr>
-            <td><%= link_to recipe.name, recipe_path(recipe) %></td>
-            <td><%= link_to recipe.description.html_safe, recipe_path(recipe) %></td>
+            <td class="index_title_description_td">
+              <div class="index_title_div"><%= link_to recipe.name, recipe_path(recipe) %></div>
+              <div class="index_description_div"><%= link_to recipe.description.html_safe, recipe_path(recipe) %></div>
+            </td>
             <% if logged_in? %>
             <td class="index_action_td"><span class="glyphicon glyphicon-eye-<%= recipe.published ? "open" : "close" %>"></span></td>
             <td class="index_action_td"><%= link_to '', edit_recipe_path(recipe), class: "glyphicon glyphicon-pencil" %></td>

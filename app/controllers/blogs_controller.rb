@@ -8,7 +8,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.order(created_at: :desc)
     @blogs.each do |b|
       b.description = @markdown.render(b.description)
     end
@@ -24,8 +24,8 @@ class BlogsController < ApplicationController
   end
 
   def newest
-    @blog = Blog.order("created_at").last
-    if @blog.present?
+    @blog = Blog.where(published: true).order("created_at").last
+    if @blog.present? and (@blog.published or logged_in?)
       render :show
     else
       @blogs = Blog.all

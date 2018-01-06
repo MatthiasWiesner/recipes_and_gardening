@@ -8,8 +8,10 @@
         <% @gardenings.each do |gardening| %>
           <% next if not (gardening.published or logged_in?) %>
           <tr>
-            <td><%= link_to gardening.name, gardening_path(gardening) %></td>
-            <td><%= link_to gardening.description.html_safe, gardening_path(gardening) %></td>
+            <td class="index_title_description_td">
+              <div class="index_title_div"><%= link_to gardening.name, gardening_path(gardening) %></div>
+              <div class="index_description_div"><%= link_to gardening.description.html_safe, gardening_path(gardening) %></div>
+            </td>
             <% if logged_in? %>
             <td class="index_action_td"><span class="glyphicon glyphicon-eye-<%= gardening.published ? "open" : "close" %>"></span></td>
             <td class="index_action_td"><%= link_to '', edit_gardening_path(gardening), class: "glyphicon glyphicon-pencil" %></td>

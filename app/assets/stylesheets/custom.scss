@@ -33,15 +33,15 @@ textarea {
 
 /* typography */
 a {
-  color: black;
-  
+  color:rgb(185, 53, 0);
+
   &:visited {
-    color:#555;
-  }
+    color:rgb(185, 53, 0);
+  };
 
   &:hover {
-    color: darkred;
-  }
+    color: orangered;
+  };
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -92,6 +92,33 @@ $gray-medium-light: #eaeaea;
   width: 20px;
 }
 
+.index_title_div {
+  text-align: left;
+  display: inline-block;
+  margin-left: -20px;
+
+  a {
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 2pt;
+    font-size: 110%;
+
+    color: rgb(185, 53, 0);
+    &:visited { color: rgb(185, 53, 0); }
+  }
+  overflow: hidden;
+  border-bottom: 1px dashed #eaeaea;
+}
+
+.index_description_div {
+  max-height: 70px;
+  overflow: hidden;
+  a {
+    color: black;
+    &:visited { color: black; };
+  };
+}
+
 .show_header, .index_header {
   margin-bottom: 50px;
   text-align: center;
@@ -103,20 +130,6 @@ $gray-medium-light: #eaeaea;
     text-align: left;
   };
   margin-bottom: 50px;
-}
-
-.show_ingredients {
-  a {
-    color: red;
-
-    &:visited {
-      color: red;
-    }
-
-    &:hover {
-      color: orangered;
-    }
-  }
 }
 
 .show_picture {

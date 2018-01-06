@@ -39,7 +39,7 @@ class RecipesController < ApplicationController
 
     related = ""
     gardening_links.each do |gardening, tags|
-      tagnames = tags.map { |t| t.tag }
+      tagnames = tags.map { |t| t.tag }.uniq
       related << "[#{ gardening.name } (Tags: #{ tagnames.join(", ") })](#{gardening_path(gardening.id)})\n"
     end
     @related = @markdown.render(related)

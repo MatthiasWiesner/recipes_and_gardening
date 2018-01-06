@@ -26,7 +26,7 @@ class BlogsController < ApplicationController
   def newest
     @blog = Blog.where(published: true).order("created_at").last
     if @blog.present? and (@blog.published or logged_in?)
-      render :show
+      redirect_to blog_path(@blog.id)
     else
       @blogs = Blog.all
       render :index

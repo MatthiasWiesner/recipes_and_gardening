@@ -28,6 +28,7 @@ class BlogsController < ApplicationController
     if @blog.present?
       render :show
     else
+      @blogs = Blog.all
       render :index
     end
   end

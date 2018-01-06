@@ -32,6 +32,17 @@ textarea {
 }
 
 /* typography */
+a {
+  color: black;
+  
+  &:visited {
+    color:#555;
+  }
+
+  &:hover {
+    color: darkred;
+  }
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -73,4 +84,59 @@ $gray-medium-light: #eaeaea;
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+/* general styles */
+
+.index_action_td {
+  width: 20px;
+}
+
+.show_header, .index_header {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.show_description, .show_ingredients, .show_preparation, .show_content, .show_related {
+  h1 {
+    font-size: 200%;
+    text-align: left;
+  };
+  margin-bottom: 50px;
+}
+
+.show_ingredients {
+  a {
+    color: red;
+
+    &:visited {
+      color: red;
+    }
+
+    &:hover {
+      color: orangered;
+    }
+  }
+}
+
+.show_picture {
+  border-width: 1px;
+  border-style: inset;
+  background-color: lightgray;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 212px;
+}
+
+.delete_picture {
+  float: right;
+}
+
+.tag_label {
+  display: inline-block;
+}
+
+.add_marked_tag_button {
+  float: right;
+  cursor: pointer;
 }

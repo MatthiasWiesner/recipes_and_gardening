@@ -42,8 +42,11 @@ class PicturesController < ApplicationController
     elsif params[:gardening_id].present?
       create_gardening_picture(params[:picture], params[:gardening_id])
       redirect_back fallback_location: gardenings_url
+    elsif params[:blog_id].present?
+      create_blog_picture(params[:picture], params[:blog_id])
+      redirect_back fallback_location: blogs_url
     else
-      redirect_to action: :index
+      redirect_to pictures_path
     end
   end
 
@@ -57,7 +60,7 @@ class PicturesController < ApplicationController
     elsif params[:gardening_id].present?
       redirect_back fallback_location: gardenings_url
     else
-      redirect_to action: :index
+      redirect_to pictures_path
     end
   end
 

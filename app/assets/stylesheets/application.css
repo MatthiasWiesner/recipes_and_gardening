@@ -12,8 +12,4 @@
  *
  *= require_tree .
  *= require_self
-
- *= require selectize.bootstrap3.css
- *= require slick-theme.css
- *= require slick.css
  */

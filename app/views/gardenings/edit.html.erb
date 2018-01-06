@@ -1,5 +1,9 @@
 <div class="row">
-  <h1>Gartentipp bearbeiten</h1>
+  <div class="col-md-12 show_header">
+    <h1>Gartentipp bearbeiten</h1>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-3">
     <%= form_with(url: pictures_path, action: "create", local: true, html: {:multipart => true}) do |form| %>
     <div class="form-group">
@@ -13,7 +17,7 @@
     <% end %>
   <% @gardening.pictures.each do |p| %>
     <%= link_to '', picture_path(p.id, gardening_id: @gardening.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove" %>
-    <div class="gardening_show_picture">
+    <div class="show_picture">
       <%= link_to image_tag(picture_path(p.id, size: "small")), url_for({controller: 'pictures', :action => 'show', id: p.id}), local: true, data: {lightbox: "image_group", title: ""} %>
     </div>
   <% end %>
@@ -23,8 +27,8 @@
   </div>
   <div class="col-md-3">
     <%= form_with(url: tags_path, action: "create", local: true) do |form| %>
-      <label for="gardening_tags">Tags</label>
-      <div id="gardening_add_tag" class="btn btn-default btn-xs">markierter Text</div>
+      <label for="gardening_tags" class="tag_label">Tags</label>
+      <div id="gardening_add_tag" class="btn btn-default btn-xs add_marked_tag_button">markierter Text</div>
       <input name="gardening_tags" id="gardening_tags" type="text" value="<%= @gardening.tags.map{ |t| t.tag }.join(",") %>" class="form-control"></input>
       <%= form.hidden_field("gardening_id", :value => @gardening.id) %>
       <%= form.submit class: "btn btn-default" %>

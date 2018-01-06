@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-12 show_header">
-    <h1><%= @gardening.name %></h1>
+    <h1><%= @blog.name %></h1>
   </div>
 </div>
 <div class="row">
-  <% if @gardening.pictures.any? %>
+  <% if @blog.pictures.any? %>
   <div class="col-md-3">
-    <% @gardening.pictures.each_with_index do |p, idx| %>
+    <% @blog.pictures.each_with_index do |p, idx| %>
     <div class="show_picture">
       <%= link_to image_tag(picture_path(p.id, size: "small")), url_for({controller: 'pictures', :action => 'show', id: p.id}), local: true, data: {lightbox: "image_group", title: ""} %>
     </div>
@@ -16,18 +16,13 @@
   <% else %>
   <div class="col-md-12">
   <% end %>
-    <% if @gardening.description.present? %>
+    <% if @blog.description.present? %>
     <div class="show_description">
-      <%= @gardening.description.html_safe %>
+      <%= @blog.description.html_safe %>
     </div>
     <% end %>
     <div class="show_content">
-      <h1>Zubereitung</h1>
-      <%= @gardening.content.html_safe %>
-    </div>
-    <div class="show_related">
-      <h1>Verwandte Links</h1>
-      <%= @related.html_safe %>
+      <%= @blog.content.html_safe %>
     </div>
   </div>
 </div>

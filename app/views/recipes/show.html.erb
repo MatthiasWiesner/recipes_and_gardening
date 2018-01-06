@@ -1,31 +1,35 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 recipe_show_header">
+  <div class="col-md-12 show_header">
     <h1><%= @recipe.name %></h1>
   </div>
 </div>
 <div class="row">
+  <% if @recipe.pictures.any? %>
   <div class="col-md-3">
     <% @recipe.pictures.each_with_index do |p, idx| %>
-    <div class="recipe_show_picture">
+    <div class="show_picture">
       <%= link_to image_tag(picture_path(p.id, size: "small")), url_for({controller: 'pictures', :action => 'show', id: p.id}), local: true, data: {lightbox: "image_group", title: ""} %>
     </div>
     <% end %>
   </div>
   <div class="col-md-9">
+  <% else %>
+  <div class="col-md-12">
+  <% end %>
     <% if @recipe.description.present? %>
-    <div class="recipe_show_description">
+    <div class="show_description">
       <%= @recipe.description.html_safe %>
     </div>
     <% end %>
-    <div class="recipe_show_ingredients">
+    <div class="show_ingredients">
       <h1>Zutaten</h1>
       <%= @recipe.ingredients.html_safe %>
     </div>
-    <div class="recipe_show_preparation">
+    <div class="show_preparation">
       <h1>Zubereitung</h1>
       <%= @recipe.preparation.html_safe %>
     </div>
-    <div class="recipe_show_preparation">
+    <div class="show_preparation">
       <h1>Verwandte Links</h1>
       <%= @related.html_safe %>
     </div>

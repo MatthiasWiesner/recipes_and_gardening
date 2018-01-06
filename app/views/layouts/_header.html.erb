@@ -7,22 +7,23 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Rezepte und Garten</a>
+        <a class="navbar-brand" href="/">Rezepte und Garten</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-        <li class="active"><%= link_to "Home", root_url %></li>
+        <!-- Wird das noch gebraucht?
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
+        -->
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
+            <li><%= link_to "Blogs", blogs_path %></li>
             <li><%= link_to "Rezeptliste", recipes_path %></li>
             <li><%= link_to "Gartentipps", gardenings_path %></li>
             <% if current_user.present? %>
-            <li role="separator" class="divider"></li>
+            <li role="separator" class="divider"></li>^
             <li><%= link_to "Bilderliste", pictures_path %></li>
-            <li class="dropdown-header">User</li>
             <li><%= link_to "Nutzerliste", users_path %></li>
             <% end %>
             </ul>

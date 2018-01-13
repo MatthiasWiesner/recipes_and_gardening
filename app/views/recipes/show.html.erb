@@ -1,6 +1,14 @@
 <div class="row">
   <div class="col-md-12 show_header">
-    <h1><%= @recipe.name %></h1>
+    <h1>
+      <%= @recipe.name %>
+      <% if logged_in? %>
+      <span class="show_actions">
+        <%= link_to '', edit_recipe_path(@recipe), class: "glyphicon glyphicon-pencil" %>
+        <%= link_to '', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove" %>
+      </span>
+      <% end %>
+    </h1>
   </div>
 </div>
 <div class="row">

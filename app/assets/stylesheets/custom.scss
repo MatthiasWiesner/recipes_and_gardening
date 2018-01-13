@@ -141,6 +141,12 @@ $gray-medium-light: #eaeaea;
   width: 212px;
 }
 
+.show_small_picture {
+  width: 50px;
+  height: 100px;
+  overflow: hidden;
+}
+
 .delete_picture {
   float: right;
 }

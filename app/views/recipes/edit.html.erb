@@ -28,8 +28,8 @@
   <div class="col-md-3">
     <%= form_with(url: tags_path, action: "create", local: true) do |form| %>
       <label for="recipe_tags" class="tag_label">Tags</label>
-      <div id="recipe_add_tag" class="btn btn-default btn-xs add_marked_tag_button">markierter Text</div>
-      <input name="recipe_tags" id="recipe_tags" type="text" value="<%= @recipe.tags.map{ |t| t.tag }.join(",") %>" class="form-control"></input>
+      <div id="recipe_add_tag" class="btn btn-default btn-xs add_marked_tag_button add_tag">markierter Text</div>
+      <input name="recipe_tags" id="recipe_tags" type="text" value="<%= @recipe.tags.map{ |t| t.tag }.join(",") %>" class="form-control edit_tags"></input>
       <%= form.hidden_field("recipe_id", :value => @recipe.id) %>
       <%= form.submit class: "btn btn-default" %>
     <% end %>

@@ -5,12 +5,19 @@
 </div>
 <div class="row">
   <% if @gardening.pictures.any? %>
-  <div class="col-md-3">
-    <% @gardening.pictures.each_with_index do |p, idx| %>
+  <div class="col-md-3 hidden-xs hidden-sm">
+    <% @gardening.pictures.each do |p| %>
     <div class="show_picture">
-      <%= link_to image_tag(picture_path(p.id, size: "small")), url_for({controller: 'pictures', :action => 'show', id: p.id}), local: true, data: {lightbox: "image_group", title: ""} %>
+      <%= link_to image_tag(picture_path(p.id, size: "small")), picture_path(p.id), local: true, data: {lightbox: "image_group", title: ""} %>
     </div>
     <% end %>
+  </div>
+  <div class="col-md-3 visible-xs visible-sm show_small_pics">
+    <% @gardening.pictures.each do |p| %>
+      <div class="show_small_picture">
+        <%= link_to image_tag(picture_path(p.id, size: "thumbnail")), picture_path(p.id, size: 'small'), local: true, data: {lightbox: "image_group", title: ""} %>
+      </div>
+    <% end %> 
   </div>
   <div class="col-md-9">
   <% else %>

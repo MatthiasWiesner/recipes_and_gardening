@@ -23,21 +23,11 @@ class BlogsController < ApplicationController
 
     # links for gardening and recipes
     Tag.all.each do |tag|
+      if @blog.description.include?(tag.tag)
+        @blog.description = parse_string(@blog.description, tag, all_links)
+      end
       if @blog.content.include?(tag.tag)
-        tag.recipes.all.each do | recipe |
-          next if !recipe.published
-          link = "[#{tag.tag}](#{recipe_path(recipe.id)})"
-          @blog.description = @blog.description.gsub(tag.tag, link)
-          @blog.content = @blog.content.gsub(tag.tag, link)
-          all_links[recipe] << tag
-        end
-        tag.gardenings.all.each do | gardening |
-          next if !gardening.published
-          link = "[#{tag.tag}](#{gardening_path(gardening.id)})"
-          @blog.description = @blog.description.gsub(tag.tag, link)
-          @blog.content = @blog.content.gsub(tag.tag, link)
-          all_links[gardening] << tag
-        end
+        @blog.content = parse_string(@blog.content, tag, all_links)
       end
     end
 
@@ -120,5 +110,32 @@ class BlogsController < ApplicationController
     def set_markdown
       renderer = Redcarpet::Render::HTML.new(no_links: false, hard_wrap: true)
       @markdown = Redcarpet::Markdown.new(renderer, autolink: true, tables: true)
+    end
+
+    def parse_string(s, tag, all_links)
+      tag.gardenings.all.each do | gardening |
+        next if !gardening.published
+        all_links[gardening] << tag
+
+        # return if tag is already part of a markdown link
+        p = /\[[\w]*#{tag.tag}[\w]*\]/
+        return s if s.match(p)
+
+        link = "[#{tag.tag}](#{gardening_path(gardening.id)})"
+        s = s.gsub(tag.tag, link)
+        return s
+      end
+      tag.recipes.all.each do | recipe |
+        next if !recipe.published
+        all_links[recipe] << tag
+
+        # return if tag is already part of a markdown link
+        p = /\[[\w]*#{tag.tag}[\w]*\]/
+        return s if s.match(p)
+
+        link = "[#{tag.tag}](#{recipe_path(recipe.id)})"
+        s = s.gsub(tag.tag, link)
+        return s
+      end
     end
 end

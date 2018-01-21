@@ -175,3 +175,40 @@ $gray-medium-light: #eaeaea;
   float: right;
   cursor: pointer;
 }
+
+.markdown-tooltip {
+  width: 20px;
+  height: 20px;
+  float: right;
+  cursor: pointer;
+}
+
+.tooltip_templates { display: none; }
+#markdown-info {
+  max-width: 700px;
+
+  .markdown-info-description {
+    margin-bottom: 30px;
+    a, p {
+      font-size: 14px;
+    }
+  };
+
+  td {
+    vertical-align: text-top;
+  };
+
+  span, div, li {
+    font-size: 0.8em;
+  };
+
+  ul {
+    margin-left: -20px;
+  }
+
+  .markdown_html {
+    @extend .table-bordered;
+    border-right: 0px;
+    border-bottom: 0px;
+  }
+}

@@ -23,7 +23,7 @@
   <div class="col-md-3 visible-xs visible-sm show_small_pics">
     <% @recipe.pictures.each do |p| %>
       <div class="show_small_picture">
-        <%= link_to image_tag(picture_path(p.id, size: "thumbnail")), picture_path(p.id, size: 'small'), local: true, data: {lightbox: "image_group", title: ""} %>
+        <%= link_to image_tag(picture_path(p.id, size: "thumbnail")), picture_path(p.id, size: 'small'), local: true, data: {lightbox: "image_group_small", title: ""} %>
       </div>
     <% end %>
   </div>
@@ -44,9 +44,11 @@
       <h1>Zubereitung</h1>
       <%= @recipe.preparation.html_safe %>
     </div>
-    <div class="show_preparation">
+    <% if @related.present? %>
+    <div class="show_related">
       <h1>Verwandte Links</h1>
       <%= @related.html_safe %>
     </div>
+    <% end %>
   </div>
 </div>

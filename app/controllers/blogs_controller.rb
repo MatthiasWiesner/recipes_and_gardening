@@ -19,6 +19,40 @@ class BlogsController < ApplicationController
   def show
     redirect_to action: :index if not (@blog.published or logged_in?)
 
+    all_links = Hash.new{|h, k| h[k] = []}
+
+    # links for gardening and recipes
+    Tag.all.each do |tag|
+      if @blog.content.include?(tag.tag)
+        tag.recipes.all.each do | recipe |
+          next if !recipe.published
+          link = "[#{tag.tag}](#{recipe_path(recipe.id)})"
+          @blog.description = @blog.description.gsub(tag.tag, link)
+          @blog.content = @blog.content.gsub(tag.tag, link)
+          all_links[recipe] << tag
+        end
+        tag.gardenings.all.each do | gardening |
+          next if !gardening.published
+          link = "[#{tag.tag}](#{gardening_path(gardening.id)})"
+          @blog.description = @blog.description.gsub(tag.tag, link)
+          @blog.content = @blog.content.gsub(tag.tag, link)
+          all_links[gardening] << tag
+        end
+      end
+    end
+
+    related = ""
+    all_links.each do |recipe_or_gardening, tags|
+      tagnames = tags.map { |t| t.tag }.uniq
+      if recipe_or_gardening.is_a? Recipe
+        path = recipe_path(recipe_or_gardening.id)
+      elsif recipe_or_gardening.is_a? Gardening
+        path = gardening_path(recipe_or_gardening.id)
+      end
+      related << "[#{ recipe_or_gardening.name } (Tags: #{ tagnames.join(", ") })](#{path})\n"
+    end
+    @related = @markdown.render(related)
+
     @blog.description = @markdown.render(@blog.description)
     @blog.content = @markdown.render(@blog.content)
   end

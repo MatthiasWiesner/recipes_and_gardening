@@ -30,4 +30,10 @@ $( document ).ready(function() {
     slidesToScroll: 3,
     dots: true,
   });
+
+  $('.markdown-tooltip').tooltipster({
+    contentCloning: true,
+    theme: 'tooltipster-shadow',
+    interactive: true
+  });
 });

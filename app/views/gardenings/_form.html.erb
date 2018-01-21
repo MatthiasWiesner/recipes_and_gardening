@@ -10,12 +10,12 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :description %>
+    <%= form.label :description %><div data-tooltip-content="#markdown-info" class="glyphicon glyphicon-info-sign markdown-tooltip"></div>
     <%= form.text_area :description, id: :gardening_description, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= form.label :content %>
+    <%= form.label :content %><div data-tooltip-content="#markdown-info" class="glyphicon glyphicon-info-sign markdown-tooltip"></div>
     <%= form.text_area :content, id: :gardening_content, class: "form-control" %>
   </div>
 

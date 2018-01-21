@@ -8,6 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert2@7.1.2/dist/sweetalert2.all.js"></script>
 
+
     <%= stylesheet_link_tag    'application', media: 'all'%>
     <%= javascript_include_tag 'application' %>
     
@@ -25,4 +26,55 @@
     </div>
     <%= debug(params) if Rails.env.development? %>
   </body>
+  <div class="tooltip_templates">
+    <div id="markdown-info" class="table">
+      <div class="markdown-info-description center">
+        <p>
+        Der Text kann als <a href="https://de.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a> eingetragen werden.
+        Kurz gesagt ist das ein ganz normaler Text, der mit ein paar 
+        Formatanweisungen, wie "*" oder "_", etwas aufgehübscht werden kann.
+        </p>
+        <p>Hier unten, ein paar Beispiele:</p>
+      </div>
+      <table class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th class="markdown_head_text">Ausgangsform</th>
+            <th class="markdown_head_html">Zielform</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="row">
+            <td class="markdown_text">
+              <div>
+              *Kursiv*, **Fett** und ***Fett kursiv*** bzw.<br/>
+              _Kursiv_, __Fett__ und ___Fett kursiv___
+              </div>
+            </td>
+            <td class="markdown_html">
+              <span style="font-style: italic;">Kursiv</span>
+              <span style="font-weight: bold;">Fett</span>
+              <span style="font-weight: bold; font-style: italic;">Fett kursiv</span>
+            </td>
+          </tr>
+          <tr scope="row">
+            <td class="markdown_text">
+              <div>* Ein Punkt in einer ungeordneten Liste</div>
+              <div>* Ein weiterer Punkt in einer ungeordneten Liste</div>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;* Ein Unterpunkt, um vier Leerzeichen eingerückt</div>
+              <div>* Statt * funktionieren auch + oder -</div>
+            </td>
+            <td class="markdown_html">
+              <ul>
+              <li> Ein Punkt in einer ungeordneten Liste</li>
+              <li> Ein weiterer Punkt in einer ungeordneten Liste
+              <ul><li> Ein Unterpunkt, um vier Leerzeichen eingerückt</li></ul></li>
+              <li> Statt * funktionieren auch + oder -</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </html>
